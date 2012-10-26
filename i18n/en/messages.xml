@@ -30,10 +30,10 @@
         <target>Texts</target>
         <note>en</note>
       </trans-unit>
-			<trans-unit id="6">
-			  <source>mdTranslator_mostrar referencia</source>
-			  <target>show reference</target>
-			</trans-unit>
+      <trans-unit id="6">
+        <source>mdTranslator_mostrar referencia</source>
+        <target>show reference</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -34,10 +34,10 @@
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
  * @version    SVN: $Id: sfFormLanguage.class.php 24547 2009-11-30 09:57:41Z fabien $
  */
-class sfFormLanguage extends sfForm
-{
+class sfFormLanguage extends sfForm {
+
   protected
-    $user = null;
+  $user = null;
 
   /**
    * Constructor.
@@ -48,12 +48,10 @@ class sfFormLanguage extends sfForm
    *
    * @see sfForm
    */
-  public function __construct(sfUser $user, $options = array(), $CSRFSecret = null)
-  {
+  public function __construct(sfUser $user, $options = array(), $CSRFSecret = null) {
     $this->user = $user;
 
-    if (!isset($options['languages']))
-    {
+    if (!isset($options['languages'])) {
       throw new RuntimeException(sprintf('%s requires a "languages" option.', get_class($this)));
     }
 
@@ -63,8 +61,7 @@ class sfFormLanguage extends sfForm
   /**
    * Changes the current user culture.
    */
-  public function save()
-  {
+  public function save() {
     $this->user->setCulture($this->getValue('language'));
   }
 
@@ -75,18 +72,15 @@ class sfFormLanguage extends sfForm
    *
    * @return Boolean   true if the form is valid, false otherwise
    */
-  public function process(sfRequest $request)
-  {
+  public function process(sfRequest $request) {
     $data = array('language' => $request->getParameter('language'));
-    if ($request->hasParameter(self::$CSRFFieldName))
-    {
+    if ($request->hasParameter(self::$CSRFFieldName)) {
       $data[self::$CSRFFieldName] = $request->getParameter(self::$CSRFFieldName);
     }
 
     $this->bind($data);
 
-    if ($isValid = $this->isValid())
-    {
+    if ($isValid = $this->isValid()) {
       $this->save();
     }
 
@@ -96,16 +90,15 @@ class sfFormLanguage extends sfForm
   /**
    * @see sfForm
    */
-  public function configure()
-  {
-      
+  public function configure() {
+
     $this->setValidators(array(
-      'language' => new sfValidatorI18nChoiceLanguage(array( 'languages' => $this->options['languages'])),
+        'language' => new sfValidatorI18nChoiceLanguage(array('languages' => $this->options['languages'])),
     ));
 
     $this->setWidgets(array(
-      'language' => new sfWidgetFormI18nChoiceLanguage(array('culture' => $this->user->getCulture(), 'languages' => $this->options['languages'])),
+        'language' => new sfWidgetFormI18nChoiceLanguage(array('culture' => $this->user->getCulture(), 'languages' => $this->options['languages'])),
     ));
-
   }
+
 }
