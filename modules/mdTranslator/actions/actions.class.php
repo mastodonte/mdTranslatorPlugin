@@ -275,10 +275,10 @@ class mdTranslatorActions extends sfActions {
         {
             $form->setWidget('translation_new_' . $id, new sfWidgetFormTextareaTinyMCE(array(
                     'width' => 540,
-                    'config' => 'plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist, spellchecker",
+                    'config' => 'plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist, spellchecker, imageupload",
                         theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect,|",
                         theme_advanced_buttons2 : "bullist,numlist,|link,unlink,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|fullscreen,|,cut,copy,paste,pastetext,pasteword,|",
-                        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid",
+                        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,imageupload",
                         theme_advanced_buttons4 : ""'
                 )));
         }
@@ -286,10 +286,10 @@ class mdTranslatorActions extends sfActions {
         {
             $form->setWidget('translation_new_' . $id, new sfWidgetFormTextareaTinyMCE(array(
                     'width' => 540,
-                    'config' => 'plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist, spellchecker, jfilebrowser",
+                    'config' => 'plugins : "pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template,wordcount,advlist, spellchecker, jfilebrowser, imageupload",
                         theme_advanced_buttons1 : "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontselect,fontsizeselect,|",
                         theme_advanced_buttons2 : "bullist,numlist,|link,unlink,code,|,insertdate,inserttime,preview,|,forecolor,backcolor,|fullscreen,|,cut,copy,paste,pastetext,pasteword,|,jfilebrowser",
-                        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid",
+                        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,imageupload",
                         theme_advanced_buttons4 : ""'
                 )));
         }
