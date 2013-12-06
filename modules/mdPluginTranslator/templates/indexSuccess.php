@@ -3,7 +3,7 @@
     use_helper('mdAsset');
 	use_helper( 'JavascriptBase' );
 	use_helper('I18N');
-	use_javascript('tiny_mce/tiny_mce.js', 'last');
+	use_javascript('/mastodontePlugin/js/tiny_mce/tiny_mce.js', 'last');
     use_plugin_javascript('mdTranslatorPlugin', 'mdPluginTranslator.js', 'last');
     use_plugin_stylesheet('mdTranslatorPlugin', 'translator');    
 ?>
