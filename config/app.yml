@@ -1,0 +1,3 @@
+all:
+  mdTranslator:
+    use_localized_homepage: false
