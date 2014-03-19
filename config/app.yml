@@ -1,3 +1,4 @@
 all:
   mdTranslator:
     use_localized_homepage: false
+    show_lang_select: false

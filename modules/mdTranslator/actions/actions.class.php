@@ -138,10 +138,11 @@ class mdTranslatorActions extends sfActions {
       }
 
       $form->setWidget('catalogue', new sfWidgetFormInputHidden(array('default' => 'messages')));
-      /*
-      $form->setWidget('language', new sfWidgetFormSelect(array('label' => 'Lenguaje', 'choices' => $this->limitLangListByUserPermissions($this->mdI18nTranslator->getLangList()), 'default' => $this->mdI18nTranslator->getSelectedLang())));
-      */
-      $form->setWidget('language', new sfWidgetFormInputHidden(array('default' => $this->getUser()->getCulture())));
+      if(sfConfig::get('app_mdTranslator_show_lang_select', false)){
+        $form->setWidget('language', new sfWidgetFormSelect(array('label' => 'Lenguaje', 'choices' => $this->limitLangListByUserPermissions($this->mdI18nTranslator->getLangList()), 'default' => $this->mdI18nTranslator->getSelectedLang())));
+      }else{
+          $form->setWidget('language', new sfWidgetFormInputHidden(array('default' => $this->getUser()->getCulture())));
+      }
       $form->setWidget('base_language', new sfWidgetFormInputHidden(array('default' => sfConfig::get('sf_default_culture'))));
       /*
       $baseLang[''] = 'Referencia'; //dejo el primero vacio para que sea la referencia
