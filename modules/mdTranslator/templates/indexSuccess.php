@@ -5,9 +5,10 @@
 	use_helper('I18N');
 	use_javascript('/mastodontePlugin/js/tiny_mce/tiny_mce.js', 'last');
     
+    use_plugin_javascript('mastodontePlugin', 'jquery/jquery-1.6.1.js','first');
     use_plugin_stylesheet('mastodontePlugin', '../js/jquery-ui-1.8.4/css/smoothness/jquery-ui-1.8.4.custom.css');
     use_plugin_javascript('mastodontePlugin', 'jquery-ui-1.8.4/js/jquery-ui-1.8.4.custom.min.js', 'last');
-    use_plugin_javascript('mastodontePlugin','jquery-ui-1.8.4/development-bundle/ui/i18n/jquery.ui.datepicker-'.sfContext::getInstance()->getUser()->getCulture().'.js','last');
+    use_plugin_javascript('mastodontePlugin', 'jquery-ui-1.8.4/js/jquery-ui-1.8.4.custom.min.js', 'last');
 
     use_plugin_javascript('mdTranslatorPlugin', 'mdTranslator.js', 'last');
     use_plugin_stylesheet('mdTranslatorPlugin', 'translator');

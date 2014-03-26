@@ -29,7 +29,8 @@ class mdChangeLenguageActions extends sfActions {
       $url = '@homepage';
     }
     $this->getUser()->setFlash('changeLenguage', 'true');
-    //return $this->redirect('localized_homepage');
+    if(sfConfig::get('app_mdTranslator_use_localized_homepage', false))
+        return $this->redirect('localized_homepage');
     return $this->redirect($url);
   }
 
