@@ -56,7 +56,7 @@ mdTranslator.prototype = {
 
   save: function(source, translation,id, selected_catalogue){
     var url = __MD_CONTROLLER_SYMFONY + '/mdTranslator/changeTextAjax';
-    var application = $('select:[name=application]').val();
+    var application = $('select[name=application]').val();
     var lenguage = $('#language').val();
     mdShowLoading();        
     $.ajax({

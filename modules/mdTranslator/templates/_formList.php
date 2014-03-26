@@ -12,7 +12,7 @@
         <div class="clear"></div>
 				<br>
 				<?php endif; ?>
-        <form id="translation_form_<?php echo $index ?>" class="submitearForm" onsubmit="mdTranslator.getInstance().updateTextArea(); mdTranslator.getInstance().save($(this).find('input:[name=translation_source_<?php echo $index ?>]').val(),$(this).find('textarea:[name=translation_new_<?php echo $index ?>]').val(),<?php echo $index ?>); return false;" action="<?php echo url_for('mdTranslator/changeTextAjax'); ?>" method="post">
+        <form id="translation_form_<?php echo $index ?>" class="submitearForm" onsubmit="mdTranslator.getInstance().updateTextArea(); mdTranslator.getInstance().save($(this).find('input[name=translation_source_<?php echo $index ?>]').val(),$(this).find('textarea[name=translation_new_<?php echo $index ?>]').val(),<?php echo $index ?>); return false;" action="<?php echo url_for('mdTranslator/changeTextAjax'); ?>" method="post">
             <?php echo $form['translation_source_'.$index]->render()  ?>
             <?php echo $form['translation_new_'.$index]->render();?>
             <input type="hidden" name="isTiny" id="isTiny" value="0"/>

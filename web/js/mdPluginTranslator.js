@@ -22,8 +22,8 @@ mdPluginTranslator.prototype = {
 
   save: function(source, translation,id, selected_catalogue){
     var url = __MD_CONTROLLER_SYMFONY + '/mdPluginTranslator/changeTextAjax';
-    var plugin = $('select:[name=plugin]').val();
-    var lenguage = $('select:[name=language]').val();
+    var plugin = $('select[name=plugin]').val();
+    var lenguage = $('select[name=language]').val();
 
     $.ajax({
       url: url,
