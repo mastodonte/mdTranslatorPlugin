@@ -15,7 +15,7 @@ mdTranslator.getInstance = function (){
 
 mdTranslator.prototype = {
   _initialize : function(){
-    $('#search').live('keypress', 
+    $('#search').on('keypress', 
       function(e){
         if(e.which == 13){
           e.preventDefault();
