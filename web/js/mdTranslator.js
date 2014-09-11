@@ -91,12 +91,12 @@ mdTranslator.prototype = {
     $.ajax({
       url: url,
       data: {
-        'app': $('#application').attr('value'), 
-        'catalogue': $('#catalogue').attr('value'), 
-        'lang': $('#language').attr('value'), 
+        'app': $('#application').val(), 
+        'catalogue': $('#catalogue').val(), 
+        'lang': $('#language').val(), 
         'page': page, 
         'index': index, 
-        'baselang': $('#base_language').attr('value'), 
+        'baselang': $('#base_language').val(), 
         'search': $('#search').val(), 
         'search_target': $('#search_target').is(':checked')
         },
@@ -109,10 +109,13 @@ mdTranslator.prototype = {
     });
   },
 
-  createInput: function(text){
-    var divPlace = $('#'+ $('#application').attr('value') + '_pages');
+  createInput: function(text, selected_page){
+    var divPlace = $('#'+ $('#application').val() + '_pages');
     //indexPages - variable global
-    var value = "<label for='cb"+indexPages+"' style='padding-right:3px;display:block;'><input name='checkbox[]' value='"+text+"' type='checkbox' id='cb"+indexPages+"' onclick='translator.getTexts(this);'>"+text+"</label>";
+    var value = "<label for='cb"+indexPages+"' style='padding-right:3px;display:block;'><input name='checkbox[]' value='"+text+"' ";
+    if(selected_page == text)
+      value += "checked='checked' ";
+    value += "type='checkbox' id='cb"+indexPages+"' onclick='translator.getTexts(this);'>"+text+"</label>";
     divPlace.append(value);
     indexPages++;
   },
@@ -120,12 +123,12 @@ mdTranslator.prototype = {
   createAppPagesDiv: function(){
 
     $('#app_pages').html('');
-    var divPlace = $('#' + $('#application').attr('value') + '_pages');
+    var divPlace = $('#' + $('#application').val() + '_pages');
     if(divPlace.length > 0){
       return false;
     }
 
-    var div = "<div id='"+ $('#application').attr('value') + "_pages' class='chkListIn'></div>";
+    var div = "<div id='"+ $('#application').val() + "_pages' class='chkListIn'></div>";
     $('#app_pages').append(div);
     return true;
   },
@@ -135,7 +138,7 @@ mdTranslator.prototype = {
     for (var x=0; x<collection.length; x++) {
       if (collection[x].type.toUpperCase()=='CHECKBOX'){
         translator.getTexts(collection[x]);
-      //this.bringTexts(collection[x]);
+        this.bringTexts(collection[x]);
       }
 
     }
@@ -173,13 +176,14 @@ mdTranslator.prototype = {
   changePages: function(){
     var self = this;
     mdShowLoading();
+    var selected_page = $("#app_pages input:checkbox:checked" ).val();
     $.ajax({
       url: __MD_CONTROLLER_SYMFONY + '/mdTranslator/getApplicationPagesAjax',
       type: 'post',
       data: {
-        'app': $('#application').attr('value'), 
-        'catalogue': $('#catalogue').attr('value'), 
-        'lang': $('#language').attr('value'), 
+        'app': $('#application').val(), 
+        'catalogue': $('#catalogue').val(), 
+        'lang': $('#language').val(), 
         'search': $('#search').val(), 
         'search_target': $('#search_target').is(':checked')
         },
@@ -188,7 +192,7 @@ mdTranslator.prototype = {
         mdHideLoading();                
         self.createAppPagesDiv();
         for(var i=0;i<json.length;i++){
-          self.createInput(json[i].page);
+          self.createInput(json[i].page, selected_page);
         }
       }
     });
@@ -197,12 +201,13 @@ mdTranslator.prototype = {
 
   changeLenguage: function(){
     mdShowLoading();
+    
     $.ajax({
       url: __MD_CONTROLLER_SYMFONY + '/mdTranslator/getLangsAjax',
       data:{
-        'app': $('#application').attr('value')
+        'app': $('#application').val()
         },
-      type: 'post',
+      type: 'POST',
       dataType: 'json',
       success: function(json){
         mdHideLoading();
@@ -211,28 +216,29 @@ mdTranslator.prototype = {
         for(count = list.length - 1; count >= 0; count--){
           list[count] = null;
         }
+        //$('#language').html('');
 
         for(i=0;i<json.length;i++){
           opt=document.createElement('option');
           opt.text=json[i].id;
           opt.value=json[i].id;
-          list.add(opt);
+          //$('#language').append(opt);
         }
 
         var listBase=$('#base_language > option');
         for(count = listBase.length - 1; count >= 0; count--){
-          listBase[count] = null;
+          //listBase[count] = null;
         }
 
         opt=document.createElement('option');
         opt.text='';
         opt.value='';
-        listBase.add(opt);
+        //listBase.add(opt);
         for(i=0;i<json.length;i++){
           opt=document.createElement('option');
           opt.text=json[i].id;
           opt.value=json[i].id;
-          listBase.add(opt);
+          //listBase.add(opt);
         }
       }
     });
@@ -242,7 +248,7 @@ mdTranslator.prototype = {
   changeApp: function(){
     var self = this;
 
-    $('#application').change(function(){
+    $('#application,#language').change(function(){
       self.changeLenguage();
       self.changePages();
     });
@@ -256,7 +262,7 @@ mdTranslator.prototype = {
     });
 
     $('#language').change(function(){
-      //self.reloadTexts();
+      self.reloadTexts();
       });
   },
 
